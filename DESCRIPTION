@@ -1,6 +1,6 @@
 Package: r.packages.tutorials
 Title: Tutorials for R Packages 
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: 
     person(given = "David",
            family = "Kane",
@@ -18,6 +18,7 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports:
+    devtools,
     tutorial.helpers
 Suggests: 
     testthat (>= 3.0.0)
