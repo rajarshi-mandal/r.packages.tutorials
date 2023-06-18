@@ -26,6 +26,19 @@ options(tutorial.exercise.timelimit = 60,
 ```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
 ```
 
+<!-- Some notes: -->
+
+<!-- The RStudio and Github tutorial is the best guide of our current practices. Do it (and submit a PR with lots of fixes) before starting this. Key is to always make students prove that they have completed each step, and help them to know that everything is OK.  -->
+
+<!-- The Quarto Websites tutorial is similar. Do it (and submit a PR with lots of fixes) before starting this. I am not sure if those two follow the same practices when it comes to creating Github repos, restarting the RStudio session and so on. You should figure out the best practices and have all three tutorials use the same approach. -->
+
+<!-- We need not mimic everything that this chapter does. It may be useful to do different things in a different order. -->
+
+<!-- In particular, we will often add extra questions to something which is, originally, a single line of code in the book. That is, we will run something like use_testhat() and then have 6 questions which examine/explain all the changes that this one command caused in the package --- it changes the DESCRIPTION file, it creates the tests directory, it creates the tests/testthat.R script (and let's explain all the lines in that file), and so on. We want a question for each of the changes, even if that question is just readLines(something, something). -->
+
+<!-- One example of a major change is, I think, that the Start with Github (see Happy Ruser book) approach is better than what they do. That is, the first step is to create a Github repo and then connect it to a new R project. -->
+
+
 ## Introduction
 ### 
 
