@@ -1,0 +1,15 @@
+## Matthew
+
+Big picture plan is: first learn about tutorials, then learn about packages, and then you will know enough to work on tutorial.helpers.
+
+
+Read first three chapters of R Packages 2(e)
+
+Tutorial for chapter 1.
+
+tutorial for chapters 14 and 15 from R packages 2e. Students need to learn how to make a test.
+
+tutorial for function documentation and vignettes?
+
+Do what is necessary to get this on CRAN. Start by shrinking the size.
+
