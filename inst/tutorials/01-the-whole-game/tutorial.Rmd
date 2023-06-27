@@ -35,16 +35,14 @@ options(tutorial.exercise.timelimit = 60,
 <!-- One example of a major change is, I think, that the Start with Github (see Happy Ruser book) approach is better than what they do. That is, the first step is to create a Github repo and then connect it to a new R project. -->
 
 ## Introduction
-
 ### 
 
 This tutorial covers [Chapter 1: The Whole Game](https://r-pkgs.org/whole-game.html) from [*R Packages (2e)*](https://r-pkgs.org/) by [Hadley Wickham](https://hadley.nz/) and [Jennifer Bryan](https://jennybryan.org/). [**devtools**](https://devtools.r-lib.org/) is a package designed to make package development easier by providing R functions that simplify and expedite common tasks.
 
 ## Connect RStudio to Git and Github
-
 ### 
 
-Visit [Github](https://github.com) and make sure you are logged in.
+Visit [Github](https://github.com) and make sure you are logged in. If you do not have a Github account, you can look at the RStudio and Github tutorial from `r4ds.tutorials`.
 
 ### Exercise 1
 
@@ -112,7 +110,7 @@ Create a new RStudio Project. Visit "File" at the upper left corner and click "N
 
 ### Exercise 8
 
-Open up the terminal panel in your new project and type `ls -a`. CP/CR.
+Open up the Terminal in your new project and type `ls -a`. CP/CR.
 
 ```{r connect-rstudio-to-g-8}
 question_text(NULL,
@@ -133,7 +131,7 @@ Open up the `.gitignore` file and add `*.Rproj` to the bottom of the file. Save 
 
 ### 
 
-In the terminal pane, run `cat .gitignore`. CP/CR.
+In the Terminal, run `cat .gitignore`. CP/CR.
 
 ```{r connect-rstudio-to-g-9}
 question_text(NULL,
@@ -154,17 +152,55 @@ Now that we have made changes to the `.gitignore` file, click the "Git" tab in t
 
 ### Exercise 11
 
-Once you have staged them, press the "Commit" button, type a meaningful initial commit message, and press commit.
+Once you have staged them, press the "Commit" button, type an initial commit message (e.g. "Initial Commit"), and press commit.
+
+### 
+
+Note that commit messages do not need to be long and complete sentences, just a few words that summarizes what the edits achieved.
 
 ### Exercise 12
 
-Finally, press the green "Push" button to push your changes to Github.
+Run `gert::git_ahead_behind()$ahead` in the Console. CP/CR
+
+```{r connect-rstudio-to-g-12}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+### 
+
+You should have gotten the number `1`. This means you have one commit out of sync with the remote Github project.
 
 ### Exercise 13
 
-Run `gert::git_ahead_behind()$ahead` in the console to make sure you pushed your changes. CP/CR.
+Type `git log` in the Terminal. CP/CR.
 
 ```{r connect-rstudio-to-g-13}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+### 
+
+`git log` shows your commit history. You should see the commit message, Github username, and timestamp for your initial commit.
+
+### Exercise 14
+
+Finally, press the green "Push" button to push your changes to Github.
+
+### 
+
+Again, run `gert::git_ahead_behind()$ahead` in the Console to make sure you pushed your changes. CP/CR.
+
+```{r connect-rstudio-to-g-14}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -178,10 +214,9 @@ question_text(NULL,
 This should return `0` meaning that there are `0` changes out of sync with Github.
 
 ## Load devtools and friends
-
 ### Exercise 1
 
-Load the `devtools` library with `library()` in the console. CP/CR.
+Load the **devtools** library with `library()` in the Console. CP/CR.
 
 ```{r load-devtools-and-fr-1}
 question_text(NULL,
@@ -194,11 +229,11 @@ question_text(NULL,
 
 ### 
 
-`devtools` is the public face of a set of packages that support various aspects of package development. Many of our commands will come from `usethis` and `devtools` is a convenient way to load everything we need at once.
+**devtools** is the public face of a set of packages that support various aspects of package development. Many of our commands will come from **usethis** and **devtools** is a convenient way to load everything we need at once.
 
 ### Exercise 2
 
-Run `packageVersion("devtools")` to make sure that your version of `devtools` is up to date. CP/CR.
+Run `packageVersion("devtools")` in the Console to check your version of **devtools**. CP/CR.
 
 ```{r load-devtools-and-fr-2}
 question_text(NULL,
@@ -211,11 +246,11 @@ question_text(NULL,
 
 ### 
 
-Your version should read `'2.4.5'`. Upgrade your version if necessary using `install.packages("devtools")`.
+Your version should be at least `r packageVersion("devtools")`. Upgrade your version if necessary using `install.packages("devtools")`.
 
 ### Exercise 3
 
-Run the `create_package()` command to initialize a new package in a directory on your computer. Use the path to your project directory as an argument like this: `create_package("~/path/to/regexcite")`. CP/CR.
+Run `getwd()` in the Console and CP/CR.
 
 ```{r load-devtools-and-fr-3}
 question_text(NULL,
@@ -228,21 +263,13 @@ question_text(NULL,
 
 ### 
 
-It will prompt you if you want to overwrite the `.Rproj` file, select "Yes". (This will put you in a new RStudio Session).
+This is the path to the current project directory which we will use shortly. You can also achieve the same output with `pwd` in the Terminal.
 
 ### Exercise 4
 
-Run `library()` again to reload in `devtools` since `create_package()` has put you in a new R sesssion.
+Run the `create_package()` command in the Console to initialize a new package in a directory on your computer. Use the path to your project directory that we found in the previous exercise as the argument like this: `create_package("path/to/regexcite")`. CP/CR.
 
-### 
-
-We will be writing a toy package called `regexcite` and it contains a couple of functions that make common tasks with regular expressions easier. Although this is just to demonstrate the typical workflow for package development, we encourage you to preview the finished product on Github: <https://github.com/jennybc/regexcite>.
-
-### Exercise 5
-
-Run `ls -a` in the terminal of your new session and take note of all the new files `create_package()` has created. CP/CR
-
-```{r load-devtools-and-fr-5}
+```{r load-devtools-and-fr-4}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -253,11 +280,19 @@ question_text(NULL,
 
 ### 
 
-You should see new `.Rbuildignore`, `NAMESPACE`, `DESCRIPTION` files and a new `R` directory.
+It will prompt you if you want to overwrite the `.Rproj` file, select "Yes". (This will put you in a new RStudio Session).
+
+### Exercise 5
+
+Run `library()` again to reload in **devtools** since `create_package()` has put you in a new R sesssion.
+
+### 
+
+We will be writing a toy package called **regexcite** and it contains a couple of functions that make common tasks with regular expressions easier. Although this is just to demonstrate the typical workflow for package development, we encourage you to preview the finished product on Github: <https://github.com/jennybc/regexcite>.
 
 ### Exercise 6
 
-Run `cat .Rbuildignore` in the terminal panel and CP/CR.
+Run `ls -a` in the Terminal of your new session and take note of all the new files `create_package()` has created. CP/CR
 
 ```{r load-devtools-and-fr-6}
 question_text(NULL,
@@ -270,11 +305,11 @@ question_text(NULL,
 
 ### 
 
-`.Rbuildignore` lists files that we need to have around but that should not be included when building the R package from source.
+You should see new `.Rbuildignore`, `NAMESPACE`, `DESCRIPTION` files and a new `R` directory.
 
 ### Exercise 7
 
-Run `cat DESCRIPTION` in the terminal and CP/CR.
+Run `cat .Rbuildignore` in the Terminal and CP/CR.
 
 ```{r load-devtools-and-fr-7}
 question_text(NULL,
@@ -287,11 +322,11 @@ question_text(NULL,
 
 ### 
 
-`DESCRIPTION` provides metadata about your package and we edit this shortly.
+`.Rbuildignore` lists files that we need to have around but that should not be included when building the R package from source.
 
 ### Exercise 8
 
-Run `cat NAMESPACE` in the terminal and CP/CR.
+Run `cat DESCRIPTION` in the Terminal and CP/CR.
 
 ```{r load-devtools-and-fr-8}
 question_text(NULL,
@@ -304,11 +339,11 @@ question_text(NULL,
 
 ### 
 
-`NAMESPACE` declares the functions your package exports for external use and the external functions your package imports from other packages. At this point, it is empty, except for a comment declaring that this is a file you should not edit by hand.
+`DESCRIPTION` provides metadata about your package and we edit this shortly.
 
 ### Exercise 9
 
-Run `ls R` to list all the files in the new `R` directory (there are none).
+Run `cat NAMESPACE` in the Terminal and CP/CR.
 
 ```{r load-devtools-and-fr-9}
 question_text(NULL,
@@ -321,17 +356,34 @@ question_text(NULL,
 
 ### 
 
-The `R/` directory is the "business end" of your package. It will soon contain `.R` files with function definitions.
+`NAMESPACE` declares the functions your package exports for external use and the external functions your package imports from other packages. At this point, it is empty, except for a comment declaring that this is a file you should not edit by hand.
 
 ### Exercise 10
 
-Stage all changes in the Git tab, press "commit", and write a meaningful commit message (e.g. Created Package). Finally, press "Commit" and "Push".
+Run `ls R` to list all the files in the new `R` directory (there are none).
+
+```{r load-devtools-and-fr-10}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+### 
+
+The `R/` directory is the "business end" of your package. It will soon contain `.R` files with function definitions.
 
 ### Exercise 11
 
-Run `gert::git_ahead_behind()$ahead` again in the console to make sure you pushed your changes. CP/CR.
+Check all the boxes under the Git tab to stage all changes, press "Commit", and write a commit message (e.g. "Created Package"). Finally, press "Commit" and "Push".
 
-```{r load-devtools-and-fr-11}
+### Exercise 12
+
+Run `gert::git_ahead_behind()$ahead` again in the Console to make sure you pushed your changes. CP/CR.
+
+```{r load-devtools-and-fr-12}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -345,11 +397,9 @@ question_text(NULL,
 Once again, this should show that there are `0` changes out of sync with Github.
 
 ## Write the first function
-
 ### 
 
 ## Summary
-
 ### 
 
 This tutorial covered [Chapter 1: The Whole Game](https://r-pkgs.org/whole-game.html) from [*R Packages (2e)*](https://r-pkgs.org/) by [Hadley Wickham](https://hadley.nz/) and [Jennifer Bryan](https://jennybryan.org/). [**devtools**](https://devtools.r-lib.org/) is a package designed to make package development easier by providing R functions that simplify and expedite common tasks.
