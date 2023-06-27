@@ -4,6 +4,8 @@
 # r.packages.tutorials
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/PPBDS/r.packages.tutorials/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/PPBDS/r.packages.tutorials/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of r.packages.tutorials is to …
