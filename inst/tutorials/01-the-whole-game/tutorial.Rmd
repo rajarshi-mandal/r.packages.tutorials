@@ -18,6 +18,10 @@ library(devtools)
 knitr::opts_chunk$set(echo = FALSE)
 options(tutorial.exercise.timelimit = 60, 
         tutorial.storage = "local") 
+
+strsplit1 <- function(x, split) {
+  strsplit(x, split = split)[[1]]
+}
 ```
 
 ```{r copy-code-chunk, child = system.file("child_documents/copy_button.Rmd", package = "tutorial.helpers")}
@@ -398,6 +402,235 @@ Once again, this should show that there are `0` changes out of sync with Github.
 
 ## Write the first function
 ### 
+
+### Exercise 1
+
+Set the variable `x` to the string `"alfa,bravo,charlie,delta"`.
+
+
+```{r write-the-first-func-1, exercise = TRUE}
+
+```
+
+```{r write-the-first-func-1-hint, eval = FALSE}
+... <- "alfa,bravo,charlie,delta"
+```
+
+###
+
+The goal of this toy package is to create functions that make common tasks easier. We will not be focusing on the actual helper functions, so if you want to check out more, look at **stringr**, **stringi**, **rex**, or **rematch2**.
+
+### Exercise 2
+
+Use the command `strsplit()` with `x` as the argument.
+
+```{r write-the-first-func-2, exercise = TRUE}
+x <- "alfa,bravo,charlie,delta"
+
+```
+
+<button onclick = "transfer_code(this)">Copy previous code</button>
+
+```{r write-the-first-func-2-hint, eval = FALSE}
+x <- "alfa,bravo,charlie,delta"
+strsplit(x)
+```
+
+###
+
+Note this results in an error because we are missing the argument `split`.
+
+### Exercise 3
+
+Copy the previous code and add an argument, setting `split` to `","`.
+
+```{r write-the-first-func-3, exercise = TRUE}
+
+```
+
+<button onclick = "transfer_code(this)">Copy previous code</button>
+
+```{r write-the-first-func-3-hint, eval = FALSE}
+x <- "alfa,bravo,charlie,delta"
+strsplit(x, split = ...)
+```
+
+###
+
+Notice how we input a character vector of length one and we output a list of length one.
+
+### Exercise 4
+
+Let's copy the previous code and take a closer look at the output with the `str()` function. 
+
+```{r write-the-first-func-4, exercise = TRUE}
+
+```
+
+<button onclick = "transfer_code(this)">Copy previous code</button>
+
+```{r write-the-first-func-4-hint, eval = FALSE}
+x <- "alfa,bravo,charlie,delta"
+...(strsplit(x, split = ","))
+```
+
+###
+
+We really just want the output to be the character vector of its split up parts. This leads R users to employ various methods of “unlist”-ing the result
+
+### Exercise 5
+
+Copy the code from exercise 3 and Use the `unlist()` function on the output of `strsplit()`.
+
+```{r write-the-first-func-5, exercise = TRUE}
+
+```
+
+<button onclick = "transfer_code(this)">Copy previous code</button>
+
+```{r write-the-first-func-5-hint, eval = FALSE}
+x <- "alfa,bravo,charlie,delta"
+...(strsplit(x, split = ","))
+
+```
+
+###
+
+The command `unlist()` simplifies a list structure into a vector. Visit the help page by typing `?unlist` into the console for more.
+
+### Exercise 6
+
+Use the `length()` function on the output of the previous code exercise
+
+```{r write-the-first-func-6, exercise = TRUE}
+
+```
+
+<button onclick = "transfer_code(this)">Copy previous code</button>
+
+```{r write-the-first-func-6-hint, eval = FALSE}
+x <- "alfa,bravo,charlie,delta"
+...(unlist((strsplit(x, split = ",")))
+```
+
+###
+
+Note how the `unlist()` function has given us a vector of length 4.
+
+### Exercise 7
+
+Copy the code from exercise 3 and add `[[1]]` to the end of the `strsplit()` line.
+
+```{r write-the-first-func-7, exercise = TRUE}
+
+```
+
+<button onclick = "transfer_code(this)">Copy previous code</button>
+
+```{r write-the-first-func-7-hint, eval = FALSE}
+x <- "alfa,bravo,charlie,delta"
+strsplit(x, split = ",")[[...]]
+```
+
+###
+
+This double bracket operator (`[[`) allows us to extract single elements from a list, in this case achieving the same effect as the `unlist()` function.
+
+### Exercise 8
+
+Another way to achieve this effect is to just create a function. Hit "Run Code" to create the convenience function `strsplit1()`.
+
+```{r write-the-first-func-8, exercise = TRUE}
+strsplit1 <- function(x, split) {
+  strsplit(x, split = split)[[1]]
+}
+```
+
+###
+
+This tutorial will not go into detail about how functions work, but please refer to chapter 26 of the [*R for Data Science (2e)*](https://r4ds.hadley.nz/quarto.html) book by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund for more information.
+
+### Exercise 9
+
+Take the code from exercise 3 and replace `strsplit()` with `strsplit1()`, the function we just created.
+
+```{r write-the-first-func-9, exercise = TRUE}
+
+```
+
+```{r write-the-first-func-9-hint, eval = FALSE}
+x <- "alfa,bravo,charlie,delta"
+strsplit1(x, split = ...)
+```
+
+###
+
+Notice how now, it "unlists" the output with just one command.
+
+### Exercise 10
+
+In the Console, type the command `use_r()` with the argument `"strsplit1"`. 
+
+###
+
+In the Terminal, type `ls R` and CP/CR.
+
+```{r write-the-first-func-10}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+The helper `use_r()` creates and/or opens a script below R/. You should see a new file listed called `strsplit1.R`.
+
+### Exercise 11
+
+Copy the code from exercise 8, paste it into the new `strsplit1.R` file and save the file.
+
+###
+
+Now, run `cat R/strsplit1.R` in the Terminal and CP/CR.
+
+```{r write-the-first-func-11}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+The file `R/strsplit1.R` should NOT contain any of the other top-level code we have recently executed, such as the definition of our practice input `x` or `library(devtools)`.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Summary
 ### 
