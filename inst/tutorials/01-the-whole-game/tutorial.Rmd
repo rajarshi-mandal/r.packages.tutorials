@@ -476,11 +476,11 @@ x <- "alfa,bravo,charlie,delta"
 
 ###
 
-We really just want the output to be the character vector of its split up parts. This leads R users to employ various methods of “unlist”-ing the result
+We really just want the output to be the character vector of its split up parts. This leads R users to employ various methods of “unlist”-ing the result.
 
 ### Exercise 5
 
-Copy the code from exercise 3 and Use the `unlist()` function on the output of `strsplit()`.
+Copy the code from Exercise 3 and Use the `unlist()` function on the output of `strsplit()`.
 
 ```{r write-the-first-func-5, exercise = TRUE}
 
@@ -500,7 +500,7 @@ The command `unlist()` simplifies a list structure into a vector. Visit the help
 
 ### Exercise 6
 
-Use the `length()` function on the output of the previous code exercise
+Use the `length()` function on the output of the previous code exercise.
 
 ```{r write-the-first-func-6, exercise = TRUE}
 
@@ -519,7 +519,7 @@ Note how the `unlist()` function has given us a vector of length 4.
 
 ### Exercise 7
 
-Copy the code from exercise 3 and add `[[1]]` to the end of the `strsplit()` line.
+Copy the code from Exercise 3 and add `[[1]]` to the end of the `strsplit()` line.
 
 ```{r write-the-first-func-7, exercise = TRUE}
 
@@ -552,7 +552,7 @@ This tutorial will not go into detail about how functions work, but please refer
 
 ### Exercise 9
 
-Take the code from exercise 3 and replace `strsplit()` with `strsplit1()`, the function we just created.
+Take the code from Exercise 3 and replace `strsplit()` with `strsplit1()`, the function we just created.
 
 ```{r write-the-first-func-9, exercise = TRUE}
 
@@ -586,11 +586,19 @@ question_text(NULL,
 
 ###
 
-The helper `use_r()` creates and/or opens a script below R/. You should see a new file listed called `strsplit1.R`.
+The helper `use_r()` creates and/or opens a script below `R/`. You should see a new file listed called `strsplit1.R`.
 
 ### Exercise 11
 
-Copy the code from exercise 8, paste it into the new `strsplit1.R` file and save the file.
+Recalling the code from exercise 8:
+
+```
+strsplit1 <- function(x, split) {
+  strsplit(x, split = split)[[1]]
+}
+
+```
+Copy and paste it into the new `strsplit1.R` file and save the file.
 
 ###
 
@@ -608,6 +616,344 @@ question_text(NULL,
 ###
 
 The file `R/strsplit1.R` should NOT contain any of the other top-level code we have recently executed, such as the definition of our practice input `x` or `library(devtools)`.
+
+## Loading and Checking
+###
+
+For package development, **devtools** offers a more robust approach towards testing our functions.
+
+### Exercise 1
+
+Call `load_all()` in the Console to make `strsplit1()` available for use. CP/CR
+
+```{r loadall-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+`load_all()` simulates the process of building, installing, and attaching the **regexcite** package.
+
+### Exercise 2
+
+Run this line of code in the Console: `exists("strsplit1", where = globalenv(), inherits = FALSE)`
+
+```{r loading-and-checking-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Note that we want this to read `FALSE` because we want it to use the **regexcite** package. If you see `TRUE`, it means that `strsplit1()` is sourced from the function you defined in the console. 
+
+###
+
+If it reads `TRUE`, restart your R session, reload in the **devtools** library, and rerun `load_all()`.
+
+###
+
+Now, `strsplit1()` should work without errors and `exists("strsplit1", where = globalenv(), inherits = FALSE)` should return `FALSE`.
+
+### Exercise 3
+
+Check box next to `R/strsplit1()` in the upper right hand Git tab and press "Commit".
+
+###
+
+Write a message like "Added first function to package", press "Commit", and press "Push".
+
+###
+
+Run `git log` in the Terminal and CP/CR.
+
+```{r loading-and-checking-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Because of `load_all()`, we now have informal, empirical evidence that `strsplit1()` works.
+
+### Exercise 4
+
+Visit the help page for `check()` by typing `?check` in the Console and selecting the **devtools** version.
+
+###
+
+Copy and paste the second paragraph in the "Description" section.
+
+```{r loading-and-checking-4}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+`R CMD check`, executed in the shell, is the gold standard for checking that an R package is in full working order. `check()` is a convenient way to run this without leaving your R session.
+
+### Exercise 5
+
+Run `check()` in the Console and only CP/CR the `R CMD check results` section.
+
+```{r loading-and-checking-5}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+It is **essential** to actually read the output of the check! Deal with problems early and often. It’s just like incremental development of `.R` and `.Rmd` files. The longer you go between full checks that everything works, the harder it becomes to pinpoint and solve your problems.
+
+### Exercise 6
+
+CP/CR the warning you received in the `R CMD check results`.
+
+```{r loading-and-checking-6}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+You should have received `0` errors, `0` notes, and this warning about licenses: 
+
+```
+Non-standard license specification:
+  `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+  license
+```
+This warning has to do with the `DESCRIPTION` file which we will address shortly by doing just as it says.
+
+### Exercise 7
+
+Run `cat DESCRIPTION` in the Terminal and CP/CR.
+
+```{r loading-and-checking-7}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+The DESCRIPTION file provides metadata about your package. You’ll see it’s populated with boilerplate content, which needs to be replaced.
+
+### Exercise 8
+
+Open up the `DESCRIPTION` file and replace the `"First"` under the `Authors@R:` field with your first name.
+
+### Run `cat DESCRIPTION` and CP/CR.
+
+```{r loading-and-checking-8}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Every package must have a DESCRIPTION. In fact, it’s the defining feature of a package (RStudio and devtools consider any directory containing DESCRIPTION to be a package).
+
+### Exercise 9
+
+Now, in the `DESCRIPTION` file, replace the `"Last"` placeholder under the `Authors@R:` field with your last name.
+
+### 
+
+Run `cat DESCRIPTION` and CP/CR.
+
+```{r loading-and-checking-9}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+`DESCRIPTION` uses a simple file format called DCF, the Debian control format. Each line consists of a field name and a value, separated by a colon.
+
+### Exercise 10
+
+Replace the `"first.last@example.com"` placeholder with your email, and delete the portion under the `Authors@R` field that says `comment = c(ORCID = "YOUR-ORCID-ID")`.
+
+###
+
+Run `cat DESCRIPTION` and CP/CR.
+
+```{r loading-and-checking-10}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+If you create a lot of packages, you can customize the default content of new `DESCRIPTION` files by setting the global option `usethis.description` to a named list. Visit [this article](https://usethis.r-lib.org/articles/usethis-setup.html) for more information.
+
+### Exercise 11
+
+Lastly, fill in the `Title` field (e.g. "Make Regular Expressions More Exciting") and the `Description` field (e.g. "Convenience functions to make some common tasks with string manipulation and regular expressions a bit easier.")
+
+###
+
+Run `cat DESCRIPTION` and CP/CR.
+
+```{r loading-and-checking-11}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Note that we currently have a placeholder in the `License` field of `DESCRIPTION` that’s deliberately invalid and suggests a resolution.
+
+### Exercise 12
+
+In the Console, run `use_mit_license()`. CP/CR.
+
+```{r loading-and-checking-12}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+This configures the `License` field correctly for the MIT license, which promises to name the copyright holders and year in a `LICENSE` file.
+
+### Exercise 13
+
+In the Terminal, run `ls`. CP/CR.
+
+```{r loading-and-checking-13}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Notice that the `use_mit_license()` function has generated new `LICENSE` and `LICENSE.md` files.
+
+### Exercise 14
+
+Run `cat LICENSE` in the Terminal. CP/CR.
+
+```{r loading-and-checking-14}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+The file should look something like this:
+```
+YEAR: 2023
+COPYRIGHT HOLDER: regexcite authors
+```
+###
+
+Like other license helpers, `use_mit_license()` also puts a copy of the full license in `LICENSE.md` and adds this file to `.Rbuildignore`. It’s considered a best practice to include a full license in your package’s source, such as on GitHub, but CRAN disallows the inclusion of this file in a package tar file.
+
+### Exercise 15
+
+Now, run `check()` again and copy the `R CMD check results` section.
+
+```{r loading-and-checking-15}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+You should now have no errors, warnings, or notes!
+
+### Exercise 16
+
+Check the boxes next to `LICENSE.md`, `LICENSE`, `DESCRIPTION`, and `.Rbuildignore` in the Git tab and press "Commit".
+
+###
+
+In the box, write a commit message (e.g. "Configured DESCRIPTION and set license") and press "Push".
+
+###
+
+Run `git log` in the Terminal and CP/CR.
+
+```{r loading-and-checking-16}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+
+
+
+
+
+
 
 
 
