@@ -900,10 +900,12 @@ question_text(NULL,
 ###
 
 The file should look something like this:
+
 ```
 YEAR: 2023
 COPYRIGHT HOLDER: regexcite authors
 ```
+
 ###
 
 Like other license helpers, `use_mit_license()` also puts a copy of the full license in `LICENSE.md` and adds this file to `.Rbuildignore`. It’s considered a best practice to include a full license in your package’s source, such as on GitHub, but CRAN disallows the inclusion of this file in a package tar file.
