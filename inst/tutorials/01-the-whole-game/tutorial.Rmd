@@ -772,7 +772,9 @@ The DESCRIPTION file provides metadata about your package. You’ll see it’s p
 
 Open up the `DESCRIPTION` file and replace the `"First"` under the `Authors@R:` field with your first name.
 
-### Run `cat DESCRIPTION` and CP/CR.
+### 
+
+Run `cat DESCRIPTION` and CP/CR.
 
 ```{r loading-and-checking-8}
 question_text(NULL,
@@ -950,31 +952,305 @@ question_text(NULL,
 
 ###
 
+If you visit the Github website, you should see the new files you just pushed.
 
+## Documenting and Installing
+###
 
+Wouldn’t it be nice to get help on `strsplit1()`, just like we do with other R functions? This requires that your package have a special R documentation file, `man/strsplit1.Rd`, written in an R-specific markup language.
 
+### Exercise 1
 
+Recall our `R/strsplit1.R` file. Run `cat R/strsplit1.R` in the Terminal and CP/CR.
 
+```{r documenting-and-inst-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
 
+###
 
+We write a specially formatted comment right above `strsplit1()`, in its source file, and then let a package called **roxygen2** handle the creation of `man/strsplit1.Rd`.
 
+### Exercise 2
 
+Open the `strsplit1.R` file in the `R` directory and click your cursor somewhere inside the `strsplit1()` function definition.
 
+###
 
+Now, navigate to "Code" in the upper left hand corner of RStudio, and select "Insert roxygen skeleton".
 
+###
 
+Copy every line that starts with `#'` and paste it below.
 
+```{r documenting-and-inst-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
 
+###
 
+The starting skeleton should look something like this: 
 
+```
+#' Title
+#'
+#' @param x 
+#' @param split 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 
+```
 
+RStudio only inserts a barebones template, so we will need to edit it manually.
 
+### Exercise 3
 
+Replace the line that says "Title" with a overall title for the function, (e.g. "Split a string"). Note that you should still keep the "#' " in front of it.
 
+###
 
+Copy every line that starts with `#'` and paste it below.
 
+```{r documenting-and-inst-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
 
+###
+
+Note that it is possible to insert this skeleton manually if for some reason you are not using RStudio. 
+
+### Exercise 4
+
+Now, for each parameter, add a short description. To do this, add a space to the end of each line that has `@param` and write what each parameter represents. (e.g. "@param x A character vector with one element." and "@param split What to split on.")
+
+###
+
+Copy every line that starts with `#'` and paste it below.
+
+```{r documenting-and-inst-4}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+In the **devtools** ecosystem, we don’t edit `.Rd` files directly with our bare hands.
+
+###
+
+Instead, we include specially formatted “roxygen comments” above the source code for each function. Then we use the **roxygen2** package to generate the `.Rd` files from these special comments.
+
+### Exercise 5
+
+Next to the `@return` line, describe what the function returns (e.g. "@return A character vector")
+
+###
+
+Lastly, add an example in a new line under the `@examples` line. We will use the original code we tested `strsplit1()` on. For example,
+
+```
+#' @examples
+#' x <- "alfa,bravo,charlie,delta"
+#' strsplit1(x, split = ",")
+
+```
+
+###
+
+Copy every line that starts with `#'` and paste it below.
+
+```{r documenting-and-inst-5}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+But we’re not done yet! We still need to trigger the conversion of this new roxygen comment into `man/strsplit1.Rd`
+
+### Exercise 6
+
+In the Console, run the command `document()`. CP/CR
+
+```{r documenting-and-inst-6}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Note that in the Console output, it is not only writing the `strsplit1.Rd` file, but also writing to the `NAMESPACE` file. We will be addressing this shortly.
+
+### Exercise 7
+
+Run `ls` in the Terminal. CP/CR.
+
+```{r documenting-and-inst-7}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Take note that the `document()` command has created a new `man` directory.
+
+### Exercise 8
+
+Run `cat man/strsplit1().Rd` in the Terminal.
+
+```{r documenting-and-inst-8}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+You should see a lot of `{}` and `\`, this is the custom syntax of `.Rd` files which can be rendered to HTML, plain text, or pdf, as needed, for viewing in different contexts. 
+
+### Exercise 9
+
+Now, that we've documented our function, we have access to a help page for it! Visit it by typing `?strsplit1` in the Console and CP/CR. If this doesn't work, run `load_all()` in the Console again. 
+
+```{r documenting-and-inst-9}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+You’ll see a message like “Rendering development documentation for ‘strsplit1’”, which reminds that you are basically previewing draft documentation. That is, this documentation is present in your package’s source, but is not yet present in an installed package.
+
+### Exercise 10
+
+Now, run `cat NAMESPACE` in the Terminal since `document()` has changed it. CP/CR.
+
+```{r documenting-and-inst-10}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+You should see a `export(strsplit1)`. The export directive in `NAMESPACE` is what makes `strsplit1()` available to a user after attaching **regexcite** via `library(regexcite)`. Just as it is entirely possible to author `.Rd` files “by hand”, you can manage `NAMESPACE` explicitly yourself. But we choose to delegate this to **devtools** (and **roxygen2**).
+
+### Exercise 11
+
+Now that we have a minimum viable product, let's install the **regexcite** package into our library by typing `install()` into the Console. CP/CR.
+
+```{r documenting-and-inst-11}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+After installation is complete, we can attach and use **regexcite** like any other package. This is also a good time to restart your R session and ensure you have a clean workspace.
+
+### Exercise 12
+
+In the Console, load in the **regexcite** package like you would any other package using `library()`. 
+
+###
+
+Now, copy and run the original testing code we used before in the Console.
+
+```
+x <- "alfa,bravo,charlie,delta"
+strsplit1(x, split = ",")
+```
+
+CP/CR.
+
+```{r documenting-and-inst-12}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Note that now we don't need to use `load_all()` anymore and it functions as a regular package!
+
+### Exercise 13
+
+Navigate to the Git tab in the upper right corner, check every box, and press "Commit".
+
+###
+
+Write a short commit message (e.g. "Documented package"), press "commit" and "Push".
+
+###
+
+Run `git log` in the Terminal and CP/CR.
+
+```{r documenting-and-inst-13}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+You should now see your new changes on the Github website under your repository!
+
+## Testing and Using other packages
+###
 
 
 
