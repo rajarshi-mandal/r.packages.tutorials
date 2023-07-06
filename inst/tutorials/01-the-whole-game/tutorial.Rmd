@@ -1252,6 +1252,246 @@ You should now see your new changes on the Github website under your repository!
 ## Testing and Using other packages
 ###
 
+We’ve tested `strsplit1()` informally, in a single example. We can formalize this as a unit test. This means we express a concrete expectation about the correct `strsplit1()` result for a specific input.
+
+### Exercise 1
+
+Run `use_testthat()` in the Console and CP/CR.
+
+```{r testing-and-using-ot-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+This initializes the unit testing machinery for your package. However, it’s still up to YOU to write the actual tests!
+
+### Exercise 2
+
+Run `cat DESCRIPTION` in the Terminal. CP/CR
+
+```{r testing-and-using-ot-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+You should notice a new entry under the Suggests field that says `testthat` with some minimum version (e.g. `>= 3.0.0`).
+
+### Exercise 3
+
+Run `ls` in the Terminal. cP/CR
+
+```{r testing-and-using-ot-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Notice that there is a new `tests` directory. Inside this folder is another `testthat` directory that will hold our unit tests.
+
+### Exercise 4
+
+Run `use_test()` in the Console with the argument `"strsplit1"` and CP/CR.
+
+```{r testing-and-using-ot-4}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+The helper `use_test()` opens and/or creates a test file. You can provide the file’s basename or, if you are editing the relevant source file in RStudio, it will be automatically generated.
+
+### Exercise 5
+
+Run `ls tests/testthat/` in the Terminal. CP/CR.
+
+```{r testing-and-using-ot-5}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+You should see a new `.R` file called `test-strsplit1`. If it had already existed, `use_test()` would have just opened it.
+
+### Exercise 6
+
+Open up the `test-strsplit1.R` file and delete the example test code.
+
+###
+
+Replace the code with this test code:
+
+```
+test_that("strsplit1() splits a string", {
+  expect_equal(strsplit1("a,b,c", split = ","), c("a", "b", "c"))
+})
+```
+###
+
+Run the above test code in the Console and CP/CR.
+
+```{r testing-and-using-ot-6}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+You should have seen "Test Passed". If `test_that()` or `strsplit1()` can’t be found, that suggests that you probably need to call `load_all()`.
+
+### Exercise 7
+
+Run `test()` in the Console and CP/CR.
+
+```{r testing-and-using-ot-7}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+You should see something like this:
+
+```
+test()
+#> ℹ Testing regexcite
+#> ✔ | F W S  OK | Context
+#> 
+#> ⠏ |         0 | strsplit1                                           
+#> ✔ |         1 | strsplit1
+#> 
+#> ══ Results ═════════════════════════════════════════════════════════
+#> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
+```
+
+Note that your tests are also run whenever you `check()` the package. In this way, you basically augment the standard checks with some of your own, that are specific to your package.
+
+### Exercise 8
+
+Let’s imagine you decide you’d rather build **regexcite** based on **stringr** than base R’s regular expression functions.
+
+###
+
+First, declare your general intent to use some functions from the **stringr** namespace with `use_package()`
+
+###
+
+Call `use_package()` with `"stringr"` as the argument in the Console. CP/CR.
+
+```{r testing-and-using-ot-8}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+The **stringr** package “provides a cohesive set of functions designed to make working with strings as easy as possible”. 
+
+
+### Exercise 9
+
+Run `cat DESCRIPTION` in the Terminal. CP/CR.
+
+```{r testing-and-using-ot-9}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+Note that the `use_package()` function adds the **stringr** package to the `Imports` field of DESCRIPTION. That is all it does.
+
+### Exercise 10
+
+Revisit the `strsplit1.R` file and replace the existing function definition with a new one (make sure to keep all the `#'` lines):
+
+```
+str_split_one <- function(string, pattern, n = Inf) {
+  stopifnot(is.character(string), length(string) <= 1)
+  if (length(string) == 1) {
+    stringr::str_split(string = string, pattern = pattern, n = n)[[1]]
+  } else {
+    character()
+  }
+}
+```
+
+Run `cat R/strsplit1.R` in the Terminal. CP/CR.
+
+
+```{r testing-and-using-ot-10}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
+
+These changes are mostly to make the function more "stringr-like". For example, we rename the function to `str_split_one()`, to signal that that is a wrapper around `stringr::str_split()` and Use the `package::function()` form when calling `stringr::str_split()`.
+
+### Exercise 11
+
+However, now the file names and the function names don't match!
+
+###
+
+Call the command `rename_files()` with the arguments `"strsplit1"`, and `"str_split_one"` in that order.
+
+```{r testing-and-using-ot-11}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+###
 
 
 
