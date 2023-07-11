@@ -412,11 +412,11 @@ Set the variable `x` to the string `"alfa,bravo,charlie,delta"`.
 
 ```
 
-```{r write-the-first-func-1-hint, eval = FALSE}
+```{r write-the-first-func-1-hint-1, eval = FALSE}
 ... <- "alfa,bravo,charlie,delta"
 ```
 
-###
+### 
 
 The goal of this toy package is to create functions that make common tasks easier. We will not be focusing on the actual helper functions, so if you want to check out more, look at **stringr**, **stringi**, **rex**, or **rematch2**.
 
@@ -431,12 +431,12 @@ x <- "alfa,bravo,charlie,delta"
 
 <button onclick = "transfer_code(this)">Copy previous code</button>
 
-```{r write-the-first-func-2-hint, eval = FALSE}
+```{r write-the-first-func-2-hint-1, eval = FALSE}
 x <- "alfa,bravo,charlie,delta"
 strsplit(x)
 ```
 
-###
+### 
 
 Note this results in an error because we are missing the argument `split`.
 
@@ -450,12 +450,12 @@ Copy the previous code and add an argument, setting `split` to `","`.
 
 <button onclick = "transfer_code(this)">Copy previous code</button>
 
-```{r write-the-first-func-3-hint, eval = FALSE}
+```{r write-the-first-func-3-hint-1, eval = FALSE}
 x <- "alfa,bravo,charlie,delta"
 strsplit(x, split = ...)
 ```
 
-###
+### 
 
 Notice how we input a character vector of length one and we output a list of length one.
 
@@ -469,12 +469,12 @@ Let's copy the previous code and take a closer look at the output with the `str(
 
 <button onclick = "transfer_code(this)">Copy previous code</button>
 
-```{r write-the-first-func-4-hint, eval = FALSE}
+```{r write-the-first-func-4-hint-1, eval = FALSE}
 x <- "alfa,bravo,charlie,delta"
 ...(strsplit(x, split = ","))
 ```
 
-###
+### 
 
 We really just want the output to be the character vector of its split up parts. This leads R users to employ various methods of “unlist”-ing the result.
 
@@ -488,13 +488,13 @@ Copy the code from Exercise 3 and Use the `unlist()` function on the output of `
 
 <button onclick = "transfer_code(this)">Copy previous code</button>
 
-```{r write-the-first-func-5-hint, eval = FALSE}
+```{r write-the-first-func-5-hint-1, eval = FALSE}
 x <- "alfa,bravo,charlie,delta"
 ...(strsplit(x, split = ","))
 
 ```
 
-###
+### 
 
 The command `unlist()` simplifies a list structure into a vector. Visit the help page by typing `?unlist` into the console for more.
 
@@ -508,12 +508,12 @@ Use the `length()` function on the output of the previous code exercise.
 
 <button onclick = "transfer_code(this)">Copy previous code</button>
 
-```{r write-the-first-func-6-hint, eval = FALSE}
+```{r write-the-first-func-6-hint-1, eval = FALSE}
 x <- "alfa,bravo,charlie,delta"
 ...(unlist((strsplit(x, split = ",")))
 ```
 
-###
+### 
 
 Note how the `unlist()` function has given us a vector of length 4.
 
@@ -527,12 +527,12 @@ Copy the code from Exercise 3 and add `[[1]]` to the end of the `strsplit()` lin
 
 <button onclick = "transfer_code(this)">Copy previous code</button>
 
-```{r write-the-first-func-7-hint, eval = FALSE}
+```{r write-the-first-func-7-hint-1, eval = FALSE}
 x <- "alfa,bravo,charlie,delta"
 strsplit(x, split = ",")[[...]]
 ```
 
-###
+### 
 
 This double bracket operator (`[[`) allows us to extract single elements from a list, in this case achieving the same effect as the `unlist()` function.
 
@@ -546,7 +546,7 @@ strsplit1 <- function(x, split) {
 }
 ```
 
-###
+### 
 
 This tutorial will not go into detail about how functions work, but please refer to chapter 26 of the [*R for Data Science (2e)*](https://r4ds.hadley.nz/quarto.html) book by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund for more information.
 
@@ -558,12 +558,12 @@ Take the code from Exercise 3 and replace `strsplit()` with `strsplit1()`, the f
 
 ```
 
-```{r write-the-first-func-9-hint, eval = FALSE}
+```{r write-the-first-func-9-hint-1, eval = FALSE}
 x <- "alfa,bravo,charlie,delta"
 strsplit1(x, split = ...)
 ```
 
-###
+### 
 
 Notice how now, it "unlists" the output with just one command.
 
@@ -571,7 +571,7 @@ Notice how now, it "unlists" the output with just one command.
 
 In the Console, type the command `use_r()` with the argument `"strsplit1"`. 
 
-###
+### 
 
 In the Terminal, type `ls R` and CP/CR.
 
@@ -584,7 +584,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 The helper `use_r()` creates and/or opens a script below `R/`. You should see a new file listed called `strsplit1.R`.
 
@@ -600,7 +600,7 @@ strsplit1 <- function(x, split) {
 ```
 Copy and paste it into the new `strsplit1.R` file and save the file.
 
-###
+### 
 
 Now, run `cat R/strsplit1.R` in the Terminal and CP/CR.
 
@@ -613,12 +613,12 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 The file `R/strsplit1.R` should NOT contain any of the other top-level code we have recently executed, such as the definition of our practice input `x` or `library(devtools)`.
 
 ## Loading and Checking
-###
+### 
 
 For package development, **devtools** offers a more robust approach towards testing our functions.
 
@@ -626,7 +626,7 @@ For package development, **devtools** offers a more robust approach towards test
 
 Call `load_all()` in the Console to make `strsplit1()` available for use. CP/CR
 
-```{r loadall-1}
+```{r loading-and-checking-1}
 question_text(NULL,
 	answer(NULL, correct = TRUE),
 	allow_retry = TRUE,
@@ -635,7 +635,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 `load_all()` simulates the process of building, installing, and attaching the **regexcite** package.
 
@@ -652,15 +652,15 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 Note that we want this to read `FALSE` because we want it to use the **regexcite** package. If you see `TRUE`, it means that `strsplit1()` is sourced from the function you defined in the console. 
 
-###
+### 
 
 If it reads `TRUE`, restart your R session, reload in the **devtools** library, and rerun `load_all()`.
 
-###
+### 
 
 Now, `strsplit1()` should work without errors and `exists("strsplit1", where = globalenv(), inherits = FALSE)` should return `FALSE`.
 
@@ -668,11 +668,11 @@ Now, `strsplit1()` should work without errors and `exists("strsplit1", where = g
 
 Check box next to `R/strsplit1()` in the upper right hand Git tab and press "Commit".
 
-###
+### 
 
 Write a message like "Added first function to package", press "Commit", and press "Push".
 
-###
+### 
 
 Run `git log` in the Terminal and CP/CR.
 
@@ -685,7 +685,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 Because of `load_all()`, we now have informal, empirical evidence that `strsplit1()` works.
 
@@ -693,7 +693,7 @@ Because of `load_all()`, we now have informal, empirical evidence that `strsplit
 
 Visit the help page for `check()` by typing `?check` in the Console and selecting the **devtools** version.
 
-###
+### 
 
 Copy and paste the second paragraph in the "Description" section.
 
@@ -706,7 +706,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 `R CMD check`, executed in the shell, is the gold standard for checking that an R package is in full working order. `check()` is a convenient way to run this without leaving your R session.
 
@@ -723,7 +723,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 It is **essential** to actually read the output of the check! Deal with problems early and often. It’s just like incremental development of `.R` and `.Rmd` files. The longer you go between full checks that everything works, the harder it becomes to pinpoint and solve your problems.
 
@@ -740,7 +740,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 You should have received `0` errors, `0` notes, and this warning about licenses: 
 
@@ -764,7 +764,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 The DESCRIPTION file provides metadata about your package. You’ll see it’s populated with boilerplate content, which needs to be replaced.
 
@@ -785,9 +785,9 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
-Every package must have a DESCRIPTION. In fact, it’s the defining feature of a package (RStudio and devtools consider any directory containing DESCRIPTION to be a package).
+Every package must have a `DESCRIPTION.` In fact, it’s the defining feature of a package (RStudio and **devtools** consider any directory containing `DESCRIPTION` to be a package).
 
 ### Exercise 9
 
@@ -806,7 +806,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 `DESCRIPTION` uses a simple file format called DCF, the Debian control format. Each line consists of a field name and a value, separated by a colon.
 
@@ -814,7 +814,7 @@ question_text(NULL,
 
 Replace the `"first.last@example.com"` placeholder with your email, and delete the portion under the `Authors@R` field that says `comment = c(ORCID = "YOUR-ORCID-ID")`.
 
-###
+### 
 
 Run `cat DESCRIPTION` and CP/CR.
 
@@ -827,7 +827,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 If you create a lot of packages, you can customize the default content of new `DESCRIPTION` files by setting the global option `usethis.description` to a named list. Visit [this article](https://usethis.r-lib.org/articles/usethis-setup.html) for more information.
 
@@ -835,7 +835,7 @@ If you create a lot of packages, you can customize the default content of new `D
 
 Lastly, fill in the `Title` field (e.g. "Make Regular Expressions More Exciting") and the `Description` field (e.g. "Convenience functions to make some common tasks with string manipulation and regular expressions a bit easier.")
 
-###
+### 
 
 Run `cat DESCRIPTION` and CP/CR.
 
@@ -848,7 +848,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 Note that we currently have a placeholder in the `License` field of `DESCRIPTION` that’s deliberately invalid and suggests a resolution.
 
@@ -865,7 +865,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 This configures the `License` field correctly for the MIT license, which promises to name the copyright holders and year in a `LICENSE` file.
 
@@ -882,7 +882,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 Notice that the `use_mit_license()` function has generated new `LICENSE` and `LICENSE.md` files.
 
@@ -899,7 +899,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 The file should look something like this:
 
@@ -908,7 +908,7 @@ YEAR: 2023
 COPYRIGHT HOLDER: regexcite authors
 ```
 
-###
+### 
 
 Like other license helpers, `use_mit_license()` also puts a copy of the full license in `LICENSE.md` and adds this file to `.Rbuildignore`. It’s considered a best practice to include a full license in your package’s source, such as on GitHub, but CRAN disallows the inclusion of this file in a package tar file.
 
@@ -925,7 +925,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 You should now have no errors, warnings, or notes!
 
@@ -933,11 +933,11 @@ You should now have no errors, warnings, or notes!
 
 Check the boxes next to `LICENSE.md`, `LICENSE`, `DESCRIPTION`, and `.Rbuildignore` in the Git tab and press "Commit".
 
-###
+### 
 
 In the box, write a commit message (e.g. "Configured DESCRIPTION and set license") and press "Push".
 
-###
+### 
 
 Run `git log` in the Terminal and CP/CR.
 
@@ -950,12 +950,12 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 If you visit the Github website, you should see the new files you just pushed.
 
 ## Documenting and Installing
-###
+### 
 
 Wouldn’t it be nice to get help on `strsplit1()`, just like we do with other R functions? This requires that your package have a special R documentation file, `man/strsplit1.Rd`, written in an R-specific markup language.
 
@@ -972,7 +972,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 We write a specially formatted comment right above `strsplit1()`, in its source file, and then let a package called **roxygen2** handle the creation of `man/strsplit1.Rd`.
 
@@ -980,11 +980,11 @@ We write a specially formatted comment right above `strsplit1()`, in its source 
 
 Open the `strsplit1.R` file in the `R` directory and click your cursor somewhere inside the `strsplit1()` function definition.
 
-###
+### 
 
 Now, navigate to "Code" in the upper left hand corner of RStudio, and select "Insert roxygen skeleton".
 
-###
+### 
 
 Copy every line that starts with `#'` and paste it below.
 
@@ -997,21 +997,20 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 The starting skeleton should look something like this: 
 
 ```
-#' Title
-#'
-#' @param x 
-#' @param split 
-#'
-#' @return
-#' @export
-#'
-#' @examples
-
+# ' Title
+# '
+# ' @param x 
+# ' @param split 
+# '
+# ' @return
+# ' @export
+# '
+# ' @examples
 ```
 
 RStudio only inserts a barebones template, so we will need to edit it manually.
@@ -1020,7 +1019,7 @@ RStudio only inserts a barebones template, so we will need to edit it manually.
 
 Replace the line that says "Title" with a overall title for the function, (e.g. "Split a string"). Note that you should still keep the "#' " in front of it.
 
-###
+### 
 
 Copy every line that starts with `#'` and paste it below.
 
@@ -1033,7 +1032,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 Note that it is possible to insert this skeleton manually if for some reason you are not using RStudio. 
 
@@ -1041,7 +1040,7 @@ Note that it is possible to insert this skeleton manually if for some reason you
 
 Now, for each parameter, add a short description. To do this, add a space to the end of each line that has `@param` and write what each parameter represents. (e.g. "@param x A character vector with one element." and "@param split What to split on.")
 
-###
+### 
 
 Copy every line that starts with `#'` and paste it below.
 
@@ -1054,11 +1053,11 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 In the **devtools** ecosystem, we don’t edit `.Rd` files directly with our bare hands.
 
-###
+### 
 
 Instead, we include specially formatted “roxygen comments” above the source code for each function. Then we use the **roxygen2** package to generate the `.Rd` files from these special comments.
 
@@ -1066,18 +1065,17 @@ Instead, we include specially formatted “roxygen comments” above the source 
 
 Next to the `@return` line, describe what the function returns (e.g. "@return A character vector")
 
-###
+### 
 
 Lastly, add an example in a new line under the `@examples` line. We will use the original code we tested `strsplit1()` on. For example,
 
 ```
-#' @examples
-#' x <- "alfa,bravo,charlie,delta"
-#' strsplit1(x, split = ",")
-
+# ' @examples
+# ' x <- "alfa,bravo,charlie,delta"
+# ' strsplit1(x, split = ",")
 ```
 
-###
+### 
 
 Copy every line that starts with `#'` and paste it below.
 
@@ -1090,7 +1088,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 But we’re not done yet! We still need to trigger the conversion of this new roxygen comment into `man/strsplit1.Rd`
 
@@ -1107,7 +1105,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 Note that in the Console output, it is not only writing the `strsplit1.Rd` file, but also writing to the `NAMESPACE` file. We will be addressing this shortly.
 
@@ -1124,7 +1122,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 Take note that the `document()` command has created a new `man` directory.
 
@@ -1141,13 +1139,13 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 You should see a lot of `{}` and `\`, this is the custom syntax of `.Rd` files which can be rendered to HTML, plain text, or pdf, as needed, for viewing in different contexts. 
 
 ### Exercise 9
 
-Now, that we've documented our function, we have access to a help page for it! Visit it by typing `?strsplit1` in the Console and CP/CR. If this doesn't work, run `load_all()` in the Console again. 
+Now, that we've documented our function, we have access to a help page for it! Visit it by first running `load_all()` in the Console and typing `?strsplit1` in the Console and CP/CR.
 
 ```{r documenting-and-inst-9}
 question_text(NULL,
@@ -1158,7 +1156,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 You’ll see a message like “Rendering development documentation for ‘strsplit1’”, which reminds that you are basically previewing draft documentation. That is, this documentation is present in your package’s source, but is not yet present in an installed package.
 
@@ -1175,7 +1173,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 You should see a `export(strsplit1)`. The export directive in `NAMESPACE` is what makes `strsplit1()` available to a user after attaching **regexcite** via `library(regexcite)`. Just as it is entirely possible to author `.Rd` files “by hand”, you can manage `NAMESPACE` explicitly yourself. But we choose to delegate this to **devtools** (and **roxygen2**).
 
@@ -1192,7 +1190,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 After installation is complete, we can attach and use **regexcite** like any other package. This is also a good time to restart your R session and ensure you have a clean workspace.
 
@@ -1200,7 +1198,7 @@ After installation is complete, we can attach and use **regexcite** like any oth
 
 In the Console, load in the **regexcite** package like you would any other package using `library()`. 
 
-###
+### 
 
 Now, copy and run the original testing code we used before in the Console.
 
@@ -1220,7 +1218,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 Note that now we don't need to use `load_all()` anymore and it functions as a regular package!
 
@@ -1228,11 +1226,11 @@ Note that now we don't need to use `load_all()` anymore and it functions as a re
 
 Navigate to the Git tab in the upper right corner, check every box, and press "Commit".
 
-###
+### 
 
 Write a short commit message (e.g. "Documented package"), press "commit" and "Push".
 
-###
+### 
 
 Run `git log` in the Terminal and CP/CR.
 
@@ -1245,12 +1243,12 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 You should now see your new changes on the Github website under your repository!
 
 ## Testing and Using other packages
-###
+### 
 
 We’ve tested `strsplit1()` informally, in a single example. We can formalize this as a unit test. This means we express a concrete expectation about the correct `strsplit1()` result for a specific input.
 
@@ -1267,7 +1265,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 This initializes the unit testing machinery for your package. However, it’s still up to YOU to write the actual tests!
 
@@ -1284,13 +1282,13 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 You should notice a new entry under the Suggests field that says `testthat` with some minimum version (e.g. `>= 3.0.0`).
 
 ### Exercise 3
 
-Run `ls` in the Terminal. cP/CR
+Run `ls` in the Terminal. CP/CR
 
 ```{r testing-and-using-ot-3}
 question_text(NULL,
@@ -1301,7 +1299,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 Notice that there is a new `tests` directory. Inside this folder is another `testthat` directory that will hold our unit tests.
 
@@ -1318,7 +1316,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 The helper `use_test()` opens and/or creates a test file. You can provide the file’s basename or, if you are editing the relevant source file in RStudio, it will be automatically generated.
 
@@ -1335,15 +1333,15 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
-You should see a new `.R` file called `test-strsplit1`. If it had already existed, `use_test()` would have just opened it.
+You should see a new `.R` file called `test-strsplit1.R`. If it had already existed, `use_test()` would have just opened it.
 
 ### Exercise 6
 
 Open up the `test-strsplit1.R` file and delete the example test code.
 
-###
+### 
 
 Replace the code with this test code:
 
@@ -1352,7 +1350,7 @@ test_that("strsplit1() splits a string", {
   expect_equal(strsplit1("a,b,c", split = ","), c("a", "b", "c"))
 })
 ```
-###
+### 
 
 Run the above test code in the Console and CP/CR.
 
@@ -1365,7 +1363,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 You should have seen "Test Passed". If `test_that()` or `strsplit1()` can’t be found, that suggests that you probably need to call `load_all()`.
 
@@ -1382,33 +1380,33 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 You should see something like this:
 
 ```
 test()
-#> ℹ Testing regexcite
-#> ✔ | F W S  OK | Context
-#> 
-#> ⠏ |         0 | strsplit1                                           
-#> ✔ |         1 | strsplit1
-#> 
-#> ══ Results ═════════════════════════════════════════════════════════
-#> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
+# > ℹ Testing regexcite
+# > ✔ | F W S  OK | Context
+# > 
+# > ⠏ |         0 | strsplit1                                           
+# > ✔ |         1 | strsplit1
+# > 
+# > ══ Results ═════════════════════════════════════════════════════════
+# > [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
 ```
 
 Note that your tests are also run whenever you `check()` the package. In this way, you basically augment the standard checks with some of your own, that are specific to your package.
 
 ### Exercise 8
 
-Let’s imagine you decide you’d rather build **regexcite** based on **stringr** than base R’s regular expression functions.
+Let’s imagine you decide you’d rather build **regexcite** based on **stringr** than on base R’s regular expression functions.
 
-###
+### 
 
 First, declare your general intent to use some functions from the **stringr** namespace with `use_package()`
 
-###
+### 
 
 Call `use_package()` with `"stringr"` as the argument in the Console. CP/CR.
 
@@ -1421,7 +1419,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 The **stringr** package “provides a cohesive set of functions designed to make working with strings as easy as possible”. 
 
@@ -1439,7 +1437,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 Note that the `use_package()` function adds the **stringr** package to the `Imports` field of DESCRIPTION. That is all it does.
 
@@ -1470,7 +1468,7 @@ question_text(NULL,
 	rows = 3)
 ```
 
-###
+### 
 
 These changes are mostly to make the function more "stringr-like". For example, we rename the function to `str_split_one()`, to signal that that is a wrapper around `stringr::str_split()` and Use the `package::function()` form when calling `stringr::str_split()`.
 
@@ -1478,7 +1476,7 @@ These changes are mostly to make the function more "stringr-like". For example, 
 
 However, now the file names and the function names don't match!
 
-###
+### 
 
 Call the command `rename_files()` with the arguments `"strsplit1"`, and `"str_split_one"` in that order.
 
@@ -1491,10 +1489,399 @@ question_text(NULL,
 	rows = 3)
 ```
 
+### 
+
+Of course, this file name work only affects the names, we will still need to update the contents of the files!
+
+### Exercise 12
+
+Open up the `str_split_one.R` file in the `R/` directory. Notice how although it is fully updated to the **stringr** package, the roxygen header is still obsolete.
+
+### 
+
+Replace the entire roxygen header with this:
+
+```
+# ' Split a string
+# '
+# ' @param string A character vector with, at most, one element.
+# ' @inheritParams stringr::str_split
+# '
+# ' @return A character vector.
+# ' @export
+# '
+# ' @examples
+# ' x <- "alfa,bravo,charlie,delta"
+# ' str_split_one(x, pattern = ",")
+# ' str_split_one(x, pattern = ",", n = 2)
+# '
+# ' y <- "192.168.0.1"
+# ' str_split_one(y, pattern = stringr::fixed("."))
+```
+### 
+
+Run `cat R/str_split_one.R` in the Terminal and CP/CR.
+
+```{r testing-and-using-ot-12}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+### 
+
+We won't cover the details of how the new function works, but it is important to note that we need to change the roxygen header as we edit the function itself. 
+
+### Exercise 13
+
+Don't forget that we have to update the test file now too!
+
+### 
+
+Open up `tests/testthat/test-str_split_one.R` and replace the existing test with the below:
+
+```
+test_that("str_split_one() splits a string", {
+  expect_equal(str_split_one("a,b,c", ","), c("a", "b", "c"))
+})
+
+test_that("str_split_one() errors if input length > 1", {
+  expect_error(str_split_one(c("a,b","c,d"), ","))
+})
+
+test_that("str_split_one() exposes features of stringr::str_split()", {
+  expect_equal(str_split_one("a,b,c", ",", n = 2), c("a", "b,c"))
+  expect_equal(str_split_one("a.b", stringr::fixed(".")), c("a", "b"))
+})
+```
+
+### 
+
+Run `cat tests/testthat/test-str_split_one.R` and CP/CR.
+
+```{r testing-and-using-ot-13}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+### 
+
+In addition to the change in the function’s name and arguments, we’ve added a couple more tests.
+
+### Exercise 14
+
+Now that we've edited our roxygen comments and made use of another package, we need to call `document()` again.
+
+### 
+
+Run `document()` in the Console and CP/CR.
+
+```{r testing-and-using-ot-14}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+### 
+
+You should see something like this: 
+
+```
+> document()
+ℹ Updating regexcite documentation
+ℹ Loading regexcite
+Warning: Objects listed as exports, but not present in namespace:
+• strsplit1
+Writing 'NAMESPACE'
+Writing 'str_split_one.Rd'
+Deleting 'strsplit1.Rd'
+```
+
+Don’t be dismayed by the warning about `"Objects listed as exports, but not present in namespace: strsplit1"`. That always happens when you remove something from the namespace.
+
+### Exercise 15
+
+Let's try out our new function!
+
+### 
+
+Run `load_all()` in the Console.
+
+### 
+
+Call this command in the Console to try out the new function: `str_split_one("a, b, c", pattern = ", ")`
+
+CP/CR.
+
+```{r testing-and-using-ot-15}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+### 
+
+As you can see, our function works exactly the same, but we know the inner working are altered.
+
+### Exercise 16
+
+Navigate to the "Git" tab, check every box, and press "Commit".
+
 ###
 
+Write a commit message (e.g. "Added tests and introduced stringr"), press "Commit", and "Push".
 
+###
 
+Run `git log` in the Terminal and CP/CR.
+
+```{r testing-and-using-ot-16}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+### 
+
+Visit your GitHub Repo to see all your new changes!
+
+## The README file
+### 
+
+As your package is on GitHub, the README.md file matters. It is the package's home page and welcome mat.
+
+### Exercise 1
+
+Call `use_readme_rmd()` in the Console. CP/CR.
+
+```{r the-readme-file-1}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+### 
+
+In addition to creating `README.Rmd`, this adds some lines to `.Rbuildignore`, and creates a Git pre-commit hook to help you keep `README.Rmd` and `README.md` in sync.
+
+### Exercise 2
+
+Run `cat README.Rmd` in the Terminal and CP/CR.
+
+```{r the-readme-file-2}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+### 
+
+We like to write the `README` in R Markdown, so it can feature actual usage. The inclusion of live code also makes it less likely that your `README` grows stale and out-of-sync with your actual package.
+
+### Exercise 3
+
+Let's alter the default `README.Rmd` for our package.
+
+### 
+
+Starting with the `regexcite` section, replace the "The goal of regexcite..." line with the following: 
+
+```
+The goal of regexcite is to make regular expressions more exciting!
+It provides convenience functions to make some common tasks with string manipulation and regular expressions a bit easier.
+```
+
+### 
+
+Next, leaving the "Installation" section alone, delete the entire "Example" section.
+
+### 
+
+Run `cat README.Rmd` in the Terminal and CP/CR.
+
+```{r the-readme-file-3}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+### 
+
+We are going to replace the default "Example" section with a "Usage" section that walks the user through our function.
+
+### Exercise 4
+
+A few lines below the "Installation" section, add two "#" and type "Usage" to create a new section.
+
+### 
+
+Paste the following under the double "#" header
+
+```
+
+A fairly common task when dealing with strings is the need to split a single string into many parts.
+This is what `base::strplit()` and `stringr::str_split()` do.
+
+```
+
+### 
+
+Next, click the green "C" in the upper right corner of the tab to create a new code chunk and select "R".
+
+### 
+
+In this code chunk, paste the following: 
+
+```
+(x <- "alfa,bravo,charlie,delta")
+strsplit(x, split = ",")
+stringr::str_split(x, pattern = ",")
+```
+
+### 
+
+Run `cat README.RMD` and CP/CR.
+
+```{r the-readme-file-4}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+### 
+
+Recall that this was the base version of `str_split` that we sought to improve with our package!
+
+### Exercise 5
+
+Under the code chunk, paste the following:
+
+```
+Notice how the return value is a **list** of length one, where the first element holds the character vector of parts.
+Often the shape of this output is inconvenient, i.e. we want the un-listed version.
+
+That's exactly what `regexcite::str_split_one()` does.
+
+```
+### 
+
+Now, add a new R code chunk and paste the following in it to demonstrate our function:
+
+```
+library(regexcite)
+
+str_split_one(x, pattern = ",")
+```
+
+### 
+
+Under that, we can add some text to further explain the function:
+
+```
+Use `str_split_one()` when the input is known to be a single string.
+For safety, it will error if its input has length greater than one.
+
+`str_split_one()` is built on `stringr::str_split()`, so you can use its `n` argument and stringr's general interface for describing the `pattern` to be matched.
+```
+### 
+
+Lastly, add another R code chunk and paste this code in it:
+
+```
+str_split_one(x, pattern = ",", n = 2)
+
+y <- "192.168.0.1"
+str_split_one(y, pattern = stringr::fixed("."))
+```
+
+This code should further demonstrate the capabilities of `str_split_one()`.
+
+### 
+
+Run `cat README.Rmd` and CP/CR.
+
+```{r the-readme-file-5}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+### 
+
+However, we still need to update the `README.md`! To do this, we need to render the `README.Rmd` file.
+
+### Exercise 6
+
+Run `build_readme()` in the Console to render the `README.Rmd` file. CP/CR.
+
+```{r the-readme-file-6}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+### 
+
+Now that we have updated the `README.md`, we should see the updated page after pushing our changes to GitHub.
+
+### Exercise 7
+
+Check all the boxes under the git tab in the upper right hand corner, press "Commit", and write a message (e.g. "Wrote README file").
+
+### 
+
+Now, press "Commit" and "Push".
+
+### 
+
+Run `git log` in the Terminal and CP/CR.
+
+```{r the-readme-file-7}
+question_text(NULL,
+	answer(NULL, correct = TRUE),
+	allow_retry = TRUE,
+	try_again_button = "Edit Answer",
+	incorrect = NULL,
+	rows = 3)
+```
+
+### 
+
+If you visit your GitHub Repo page, you should see a new `README.md` completely formatted complete with code blocks!
 
 ## Summary
 ### 
