@@ -1,3 +1,7 @@
+## Rajarshi
+
+Added the correct answers below hints and made minor fixes.
+
 ## Matthew
 
 Big picture plan is: first learn about tutorials, then learn about packages, and then you will know enough to work on tutorial.helpers.

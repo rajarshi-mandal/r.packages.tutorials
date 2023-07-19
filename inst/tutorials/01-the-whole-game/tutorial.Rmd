@@ -215,7 +215,7 @@ question_text(NULL,
 
 ### 
 
-This should return `0` meaning that there are `0` changes out of sync with Github.
+This should return `0` meaning that there are `0` changes out of sync with Github, so everything is up-to-date.
 
 ## Load devtools and friends
 ### Exercise 1
@@ -326,7 +326,7 @@ question_text(NULL,
 
 ### 
 
-`.Rbuildignore` lists files that we need to have around but that should not be included when building the R package from source.
+`.Rbuildignore` lists files that we need to have around but should not be included when building the R package from source.
 
 ### Exercise 8
 
@@ -343,7 +343,7 @@ question_text(NULL,
 
 ### 
 
-`DESCRIPTION` provides metadata about your package and we edit this shortly.
+`DESCRIPTION` provides metadata about your package. We will edit this shortly.
 
 ### Exercise 9
 
@@ -381,7 +381,7 @@ The `R/` directory is the "business end" of your package. It will soon contain `
 
 ### Exercise 11
 
-Check all the boxes under the Git tab to stage all changes, press "Commit", and write a commit message (e.g. "Created Package"). Finally, press "Commit" and "Push".
+Check all the boxes under the Git tab to stage all changes, press "Commit", and write a commit message (e.g. "Created Package"). Finally, press "Commit" and "Push". Backing up work on Github allows you to keep your progress if your local computer fails or you accidentally deleted important files locally.
 
 ### Exercise 12
 
@@ -416,9 +416,13 @@ Set the variable `x` to the string `"alfa,bravo,charlie,delta"`.
 ... <- "alfa,bravo,charlie,delta"
 ```
 
+```{r, include=FALSE}
+x <- "alfa,bravo,charlie,delta"
+```
+
 ### 
 
-The goal of this toy package is to create functions that make common tasks easier. We will not be focusing on the actual helper functions, so if you want to check out more, look at **stringr**, **stringi**, **rex**, or **rematch2**.
+The goal of this toy package is to create functions that make common tasks easier. We will not be focusing on the actual helper functions, so if you want to check out more, take a look at **stringr**, **stringi**, **rex**, or **rematch2**.
 
 ### Exercise 2
 
@@ -432,6 +436,11 @@ x <- "alfa,bravo,charlie,delta"
 <button onclick = "transfer_code(this)">Copy previous code</button>
 
 ```{r write-the-first-func-2-hint-1, eval = FALSE}
+x <- "alfa,bravo,charlie,delta"
+strsplit(...)
+```
+
+```{r, include=FALSE}
 x <- "alfa,bravo,charlie,delta"
 strsplit(x)
 ```
@@ -455,6 +464,11 @@ x <- "alfa,bravo,charlie,delta"
 strsplit(x, split = ...)
 ```
 
+```{r, include=FALSE}
+x <- "alfa,bravo,charlie,delta"
+strsplit(x, split = ',')
+```
+
 ### 
 
 Notice how we input a character vector of length one and we output a list of length one.
@@ -474,6 +488,11 @@ x <- "alfa,bravo,charlie,delta"
 ...(strsplit(x, split = ","))
 ```
 
+```{r, include=FALSE}
+x <- "alfa,bravo,charlie,delta"
+str(strsplit(x, split = ','))
+```
+
 ### 
 
 We really just want the output to be the character vector of its split up parts. This leads R users to employ various methods of “unlist”-ing the result.
@@ -491,7 +510,11 @@ Copy the code from Exercise 3 and Use the `unlist()` function on the output of `
 ```{r write-the-first-func-5-hint-1, eval = FALSE}
 x <- "alfa,bravo,charlie,delta"
 ...(strsplit(x, split = ","))
+```
 
+```{r, include=FALSE}
+x <- "alfa,bravo,charlie,delta"
+unlist(strsplit(x, split = ','))
 ```
 
 ### 
@@ -510,7 +533,12 @@ Use the `length()` function on the output of the previous code exercise.
 
 ```{r write-the-first-func-6-hint-1, eval = FALSE}
 x <- "alfa,bravo,charlie,delta"
-...(unlist((strsplit(x, split = ",")))
+...(unlist(strsplit(x, split = ',')))
+```
+
+```{r, include=FALSE}
+x <- "alfa,bravo,charlie,delta"
+length(unlist(strsplit(x, split = ',')))
 ```
 
 ### 
@@ -532,13 +560,18 @@ x <- "alfa,bravo,charlie,delta"
 strsplit(x, split = ",")[[...]]
 ```
 
+```{r, include=FALSE}
+x <- "alfa,bravo,charlie,delta"
+strsplit(x, split = ",")[[1]]
+```
+
 ### 
 
 This double bracket operator (`[[`) allows us to extract single elements from a list, in this case achieving the same effect as the `unlist()` function.
 
 ### Exercise 8
 
-Another way to achieve this effect is to just create a function. Hit "Run Code" to create the convenience function `strsplit1()`.
+Another way to achieve this effect is to just create a function. Click "Run Code" to create the convenience function `strsplit1()`.
 
 ```{r write-the-first-func-8, exercise = TRUE}
 strsplit1 <- function(x, split) {
@@ -561,6 +594,11 @@ Take the code from Exercise 3 and replace `strsplit()` with `strsplit1()`, the f
 ```{r write-the-first-func-9-hint-1, eval = FALSE}
 x <- "alfa,bravo,charlie,delta"
 strsplit1(x, split = ...)
+```
+
+```{r, include=FALSE}
+x <- "alfa,bravo,charlie,delta"
+strsplit1(x, split = ",")
 ```
 
 ### 
