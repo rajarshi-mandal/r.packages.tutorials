@@ -1,0 +1,37 @@
+---
+title: Testing Basics
+author: Rajarshi Mandal
+tutorial:
+  id: the-whole-game
+output:
+  learnr::tutorial:
+    progressive: yes
+    allow_skip: yes
+runtime: shiny_prerendered
+description: 'Tutorial for Chapter 13: Testing basics'
+---
+
+```{r setup, include = FALSE}
+library(learnr)
+library(tutorial.helpers)
+library(devtools)
+knitr::opts_chunk$set(echo = FALSE)
+options(tutorial.exercise.timelimit = 60, 
+        tutorial.storage = "local") 
+```
+
+```{r copy-code-chunk, child = system.file("child_documents/copy_button.Rmd", package = "tutorial.helpers")}
+```
+
+```{r info-section, child = system.file("child_documents/info_section.Rmd", package = "tutorial.helpers")}
+```
+
+## Introduction
+### 
+
+This tutorial covers [Chapter 13: The Whole Game](https://r-pkgs.org/testing-basics.html) from [*R Packages (2e)*](https://r-pkgs.org/) by [Hadley Wickham](https://hadley.nz/) and [Jennifer Bryan](https://jennybryan.org/). [**devtools**](https://devtools.r-lib.org/) is a package designed to make package development easier by providing R functions that simplify and expedite common tasks.
+
+## Test mechanics and workflow
+### 
+
+Lorem Ipsum.
