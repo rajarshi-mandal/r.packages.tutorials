@@ -1,6 +1,10 @@
 ## Rajarshi
 
-Added the correct answers below hints and made minor fixes.
+
+Chapter 6 tutorial
+
+Chapter 13 tutorial
+
 
 ## Matthew
 
