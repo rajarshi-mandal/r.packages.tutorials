@@ -16,3 +16,8 @@ inst/tutorials/[^/]*/(?!(data|images|.*Rmd))
 inst/tutorials/*/*html
 
 inst/tutorials/*/*_files/
+
+# The simple name of a file ignores that file wherever it might appear.
+
+.DS_Store
+
