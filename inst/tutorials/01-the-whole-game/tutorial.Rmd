@@ -426,7 +426,7 @@ The goal of this toy package is to create functions that make common tasks easie
 
 ### Exercise 2
 
-Use the command `strsplit()` with `x` as the argument.
+Use the command `strsplit()` with `x` as the first argument.
 
 ```{r write-the-first-func-2, exercise = TRUE}
 x <- "alfa,bravo,charlie,delta"
@@ -440,14 +440,7 @@ x <- "alfa,bravo,charlie,delta"
 strsplit(...)
 ```
 
-```{r, include=FALSE}
-x <- "alfa,bravo,charlie,delta"
-strsplit(x)
-```
-
-### 
-
-Note this results in an error because we are missing the argument `split`.
+Note this results in an error because we are missing the second argument, `split`.
 
 ### Exercise 3
 
